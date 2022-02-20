@@ -110,6 +110,7 @@ function cleanupData(data) {
 findRawDataFile((err, filename) =>
   readRawData(filename, (err, data) => {
     groupMiscInfo(data);
-    cleanupData(data);
+    const out = cleanupData(data);
+    fs.writeFileSync("data-inter/cleaned.json", JSON.stringify(out, null, "  "));
     // analyseNumberOfDevices(data);
   }));
